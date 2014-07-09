@@ -1,0 +1,29 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function Login()
+	{
+		var jData ={};
+		jData.userName='mocadmin';
+		jData.password='password';
+		$.ajax({
+		 type: 'GET',
+		 url: 'http://10.0.170.81:8080/Services/SecurityService/SecurityService.svc/AuthenticateUser', // Location of the service
+		 data: JSON.stringify(jData),//'{"deliveryId"="any", "sessionKey"="any"}', //Data sent to server
+		 contentType: "application/json;charset-uf8", // content type sent to server
+		 dataType: "json", //Expected data format from server
+		 success: function (msg) { alert("Done");
+			document.getElementById("output").innerHTML = generatedTableHtml;
+		 },
+		error: function (error) {
+			alert("Error:" + error.responseText + " Status:" + error.status + " StatusText:" + error.statusText );
+		}
+		 });
+	 }
+
+</script>
+<html>
+<button type="button" onclick="Login()">Login</button>
+
+<p id="output"></p>
+
+</html>
